@@ -18,7 +18,7 @@ module CatalogQuery
     if bibnumber_nodes.count == 0
       'only one result'
     else
-      bibnumber_nodes.map(&:value)
+      bibnumber_nodes.map(&:value).each { |b| b[0] = '' }# remove 'b'
     end
 
     #returns results

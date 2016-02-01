@@ -31,9 +31,9 @@ class SierraApi
   end
 
   def bibs(id:)
-    authenticate
+    authenticate # have to call this before each request
     response = @connection.get("bibs/#{id}/marc")
-    print response.body
+    response.body['fields']
   end
 
   def item
@@ -68,6 +68,6 @@ class SierraApi
   end
 
   def authentication_expired?
-    !@expired_in.present? || @expired_in < Time.now
+    !@expires_in.present? || @expires_in < Time.now
   end
 end
