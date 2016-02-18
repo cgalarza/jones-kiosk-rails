@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  get 'browse/', to: 'browse#index', as: 'browse'
+  genres = ['adventure', 'animation', 'children', 'comedy', 'crime', 'documentary', 'drama', 'historical',
+    'horror', 'romance', 'science_fiction', 'television_programs', 'war', 'western']
 
+  get 'browse/', to: 'browse#index', as: 'browse',
+      constraints: lambda { |request| genres.include? request.query_parameters['genre'] }
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

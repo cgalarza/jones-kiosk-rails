@@ -25,7 +25,12 @@ module CatalogQuery
   end
 
   def self.genre_url(genre)
-    urls = {
+    urls = CatalogQuery.genre_urls
+    (urls.key? genre) ? urls[genre] : false;
+  end
+
+  def self.genre_urls
+    {
       adventure: common_genre_url('adventure%20films'),
   		animation: common_genre_url('Animated%20films'),
   		children: "http://libcat.dartmouth.edu/search~S1?/Xs:children%27s%20films%20and%20branch:branchbajmz",
@@ -41,7 +46,6 @@ module CatalogQuery
   		war: common_genre_url("war%20films"),
   		western: common_genre_url("western*"),
     }
-    (urls.key? genre) ? urls[genre] : false;
   end
 
   private

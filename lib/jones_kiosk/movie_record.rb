@@ -4,7 +4,7 @@ module JonesKiosk
   class MovieRecord
     @@sierra_api = SierraApi.new
 
-    attr_reader :bibnumber, :title
+    attr_reader :bibnumber, :title, :summary, :cast, :language, :rating
 
     #This object should contain: bibnumber, title, summary, cast, language, rating, note
     #poster_url?
@@ -24,21 +24,32 @@ module JonesKiosk
       marc_record = @@sierra_api.bibs(id: @bibnumber)
 
       relavent_tags = ['245', '500', '511', '520', '521', '546']
-      tags = marc_record.select{ |i| relavent_tags.include?(i['tag']) }
 
-      movie_record = { bibnumber: bibnumber }
+      tags = {}
+      marc_record.each do |i|
+        tag = i['tag']
+        if relavent_tags.include?(tag)
+          tags[tag] = {} unless tags.key?(tag)
 
-      # Extract title.
-      title_tags = tags.select{ |t| t['tag'] == '245' }
-      if title_tags.count == 1
-        subfield = title_tags.first['data']['subfields'].select{ |t| t['code'] == 'a' }
-        @title = subfield.first['data']
+          i['data']['subfields'].each do |j|
+            code = j['code']
+            if tags[tag].key?(code)
+              tags[tag][code] << ' ' + j['data']
+            else
+              tags[tag][code] = j['data']
+            end
+          end
+        end
       end
+      #pp tags
 
-      # Extract summary.
-      summary_tags = tags.select{ |t| t['tag'] == '520' }
+      # Extract fields.
+      @title = tags['245']['a'] if defined?(tags['245']['a'])
+      @summary = tags['520']['a'] if defined?(tags['520']['a'])
+      @cast = tags['511']['a'] if defined?(tags['511']['a'])
+      @language = tags['546']['a'] if defined?(tags['546']['a'])
+      @rating = tags['521']['a'] if defined?(tags['521']['a'])
 
-      puts "Movie Record: " + movie_record.to_s
     end
   end
 end

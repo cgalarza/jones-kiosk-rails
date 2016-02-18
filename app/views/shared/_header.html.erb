@@ -3,18 +3,16 @@
   <div class="container-fluid">
     <!-- Jones Media Center Logo -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="index.html">
-        <img alt="Brand" src="assets/jones-logo.png">
-      </a>
+      <%= link_to image_tag('jones-logo.png'), root_path, class: 'navbar-brand', alt: 'Brand' %>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <!-- Link to home -->
-        <li><a href="index.html" id="home">Home</a></li>
+        <li><%= link_to 'Home', root_path, id: 'home' %></li>
 
         <!-- Link to search by genre -->
-        <li><a href="search.html?genre=none">Search by Genre</a></li>
+        <li><%= link_to 'Browse by Genre', browse_path %></li>
 
         <!-- Searching by keyword -->
         <form action="search.html" class="navbar-form navbar-left" role="search" method="get">

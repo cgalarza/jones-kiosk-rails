@@ -11,7 +11,6 @@ gem 'themoviedb-api'
 gem 'therubyracer', platforms: :ruby # Embed the V8 JavaScript interpreter into Ruby
 gem 'turbolinks' # Turbolinks makes following links in your web application faster.
 
-
 # Asset Pipeline
 gem 'bootstrap-sass', '~> 3.0'
 gem 'jquery-rails' # Use jquery as the JavaScript library

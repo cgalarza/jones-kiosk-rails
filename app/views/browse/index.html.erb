@@ -1,50 +1,56 @@
 <%= render 'shared/header' %>
 
-<% @records.each do |record| %>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="media">
-        <!-- <div class="media-left">
-          <img class="media-object movie-image" src="{{imagePath media accession_number}}"></img>
-        </div> -->
+<div class="container">
+  <div id="search-results-wrapper" class="container">
+    <div id="search-results">
+      <% @records.each do |record| %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left">
+                <!--<img class="media-object movie-image" src="{{imagePath media accession_number}}"></img> -->
+              </div>
 
-        <div class="media-body">
+              <div class="media-body">
 
-          <h2 class="media-heading title">
-            <a href="entire_record.html?bibnum=<%= record.bibnumber %>"><%= record.title %></a>
-            <!-- &nbsp;<span class="badge media-badge">{{media}}</span> -->
-          </h2>
+                <h2 class="media-heading title">
+                  <a href="entire_record.html?bibnum=<%= record.bibnumber %>"><%= record.title %></a>
+                  <!-- &nbsp;<span class="badge media-badge">{{media}}</span> -->
+                </h2>
 
-          <!-- if record['summary']
-            <p>record['summary'] </p>
-           end
+                <% if record.summary %>
+                  <p><%= record.summary %></p>
+                <% end %>
 
-          {{!-- Location, Call number, Status --}}
+                <!-- {{ Location, Call number, Status }}
 
-          <p>{{formatCallNumber accession_number location media}}</p>
+                <p>{{formatCallNumber accession_number location media}}</p> -->
 
-            if record['cast']
-            <p><strong>Cast:</strong> record['cast'] </p>
-           end
+                <% if record.cast %>
+                  <p><strong>Cast:</strong> <%= record.cast %> </p>
+                <% end %>
 
-           if record['language']
-            <p><strong>Language:</strong>  record['language'] </p>
-           end
+                <% if record.language %>
+                  <p><strong>Language:</strong> <%= record.language %></p>
+                <% end %>
 
-           if record['rating']
-            <p><strong>Rating:</strong>  record['rating'] </p>
-           end
+                <% if record.rating %>
+                  <p><strong>Rating:</strong> <%= record.rating %></p>
+                <% end %>
+                 <!--
+                 if record['note']
+                  <p><strong>Note:</strong>  record['note'] </p>
+                 end
 
-           if record['note']
-            <p><strong>Note:</strong>  record['note'] </p>
-           end
+                if url
+                  <a href="{{url}}">See library catalog entry</a>
+                end -->
 
-          if url
-            <a href="{{url}}">See library catalog entry</a>
-          end -->
-
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
-<% end %>
+</div>

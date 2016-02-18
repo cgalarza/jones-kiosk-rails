@@ -6,14 +6,16 @@ class BrowseController < ApplicationController
   # GET browse
   # Query String: genre=""
   def index
-    bibnumbers = CatalogQuery.genre_query(:animation)
 
-    @records = bibnumbers.map do |bibnumber|
-      JonesKiosk::MovieRecord.new(bibnumber)
-      # find image for movie_record
+    if params[:genre]
+      bibnumbers = CatalogQuery.genre_query(params[:genre].to_sym)
+
+      @records = bibnumbers.map do |bibnumber|
+        JonesKiosk::MovieRecord.new(bibnumber)
+        # find image for movie_record
+      end
+
+      puts "records: " + @records.to_s
     end
-
-    puts "records: " + @records.to_s
-    # method to go from marc record to movie relavent fields
   end
 end
