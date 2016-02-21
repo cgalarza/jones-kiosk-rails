@@ -13,11 +13,12 @@ h1 {
 .navbar-nav>li {
 	font-weight: 300;
 	font-size: 18px;
-}
-.navbar-nav>li>.questions-link {
-	text-align: center;
-	padding-top: 10.75px;
-	padding-bottom: 10.75px;
+
+	.questions-link {
+		text-align: center;
+		padding-top: 10.75px;
+		padding-bottom: 10.75px;
+	}
 }
 
 .navbar-brand {

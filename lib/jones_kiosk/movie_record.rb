@@ -4,7 +4,7 @@ module JonesKiosk
   class MovieRecord
     @@sierra_api = SierraApi.new
 
-    attr_reader :bibnumber, :title, :summary, :cast, :language, :rating
+    attr_reader :bibnumber, :title, :summary, :cast, :language, :rating, :year
 
     #This object should contain: bibnumber, title, summary, cast, language, rating, note
     #poster_url?
@@ -44,11 +44,18 @@ module JonesKiosk
       #pp tags
 
       # Extract fields.
-      @title = tags['245']['a'] if defined?(tags['245']['a'])
+      @title = tags['245']['a'].gsub(' /', '') if defined?(tags['245']['a'])
       @summary = tags['520']['a'] if defined?(tags['520']['a'])
       @cast = tags['511']['a'] if defined?(tags['511']['a'])
       @language = tags['546']['a'] if defined?(tags['546']['a'])
       @rating = tags['521']['a'] if defined?(tags['521']['a'])
+
+      if tags.key?('500')
+        note = tags['500'].values.join(' ')
+        if match = /\d{4}/.match(note)
+          @year = match[0] if match.length == 1
+        end
+      end
 
     end
   end

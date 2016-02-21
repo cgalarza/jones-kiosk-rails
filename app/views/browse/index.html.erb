@@ -36,6 +36,10 @@
                   <!-- &nbsp;<span class="badge media-badge">{{media}}</span> -->
                 </h2>
 
+                <% if record.year %>
+                  <p><%= record.year %></p>
+                <% end %>
+
                 <% if record.summary %>
                   <p><%= record.summary %></p>
                 <% end %>
