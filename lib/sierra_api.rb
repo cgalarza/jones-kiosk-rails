@@ -46,6 +46,9 @@ class SierraApi
 
   # Get authentication token and save when this token will expire.
   def authenticate
+    raise 'Sierra api key not present' unless ENV['SIERRA_API_KEY']
+    raise 'Sierra api secret not present' unless ENV['SIERRA_API_SECRET']
+
     if authentication_expired?
       credentials = Base64.strict_encode64(ENV['SIERRA_API_KEY'] + ':' + ENV['SIERRA_API_SECRET'])
       # throw error if api key or secret key is missing.

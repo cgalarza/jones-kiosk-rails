@@ -23,3 +23,31 @@ h1 {
 .navbar-brand {
 	padding: 0px;
 }
+
+/* -----------------------------------*/
+/* ----->>> GENRE NAVIGATION <<<------*/
+/* -----------------------------------*/
+
+.nav-genre {
+	font-weight: 300;
+	font-size: 18px;
+	text-align: center;
+}
+
+.nav-genre>li {
+	margin: 5px;
+	float: none;
+	display: inline-block;
+}
+
+.nav-genre>li>a {
+	padding: 7px 12px;
+	color: #FFFFFF;
+	background-color: #5e5d7d;
+}
+
+.nav-genre>li.active>a,
+.nav-genre>li:hover>a {
+	color: #000000;
+	background-color: #F5C068;
+}

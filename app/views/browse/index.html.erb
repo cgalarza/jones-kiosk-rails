@@ -1,6 +1,24 @@
 <%= render 'shared/header' %>
 
 <div class="container">
+
+  <ul class="nav nav-pills nav-genre">
+    <li><%= link_to 'adventure', browse_path(genre: :adventure) %></li>
+		<li><%= link_to 'animation', browse_path(genre: :animation) %></li>
+		<li><%= link_to 'children\'s', browse_path(genre: :childrens) %></li>
+    <li><%= link_to 'comedy', browse_path(genre: :comedy) %></li>
+    <li><%= link_to 'crime', browse_path(genre: :crime) %></li>
+    <li><%= link_to 'documentary', browse_path(genre: :documentary) %></li>
+    <li><%= link_to 'drama', browse_path(genre: :drama) %></li>
+    <li><%= link_to 'historical', browse_path(genre: :historical) %></li>
+    <li><%= link_to 'horror', browse_path(genre: :horror) %></li>
+    <li><%= link_to 'romance', browse_path(genre: :romance) %></li>
+    <li><%= link_to 'science fiction', browse_path(genre: :science_fiction) %></li>
+    <li><%= link_to 'television programs', browse_path(genre: :television_programs) %></li>
+    <li><%= link_to 'war', browse_path(genre: :war) %></li>
+    <li><%= link_to 'western', browse_path(genre: :western) %></li>
+	</ul>
+
   <div id="search-results-wrapper" class="container">
     <div id="search-results">
       <% @records.each do |record| %>
