@@ -6,10 +6,12 @@ Rails.application.routes.draw do
   root 'home#index'
 
   genres = ['adventure', 'animation', 'children', 'comedy', 'crime', 'documentary', 'drama', 'historical',
-    'horror', 'romance', 'science_fiction', 'television_programs', 'war', 'western']
+    'horror', 'romance', 'science_fiction', 'television_programs', 'war', 'western', nil]
 
   get 'browse/', to: 'browse#index', as: 'browse',
       constraints: lambda { |request| genres.include? request.query_parameters['genre'] }
+
+  get 'fandq/', to: 'fandq#index', as: 'fandq'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
