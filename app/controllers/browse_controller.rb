@@ -1,7 +1,6 @@
 require 'catalog_query'
 require 'jones_kiosk/movie_record'
 
-
 class BrowseController < ApplicationController
   # GET browse
   # Query String: genre=""

@@ -14,16 +14,16 @@
 ActiveRecord::Schema.define(version: 20160128003945) do
 
   create_table "query_histories", force: :cascade do |t|
-    t.datetime "date"
-    t.string   "bibnumber"
+    t.datetime "date",      null: false
+    t.string   "bibnumber", null: false
   end
 
   create_table "tmdb_records", force: :cascade do |t|
     t.integer  "query_history_id"
-    t.string   "poster_url"
-    t.string   "imdb_id"
-    t.datetime "created_at"
-    t.datetime "update_at"
+    t.string   "poster_url",       null: false
+    t.string   "imdb_id",          null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "tmdb_records", ["query_history_id"], name: "index_tmdb_records_on_query_history_id"
